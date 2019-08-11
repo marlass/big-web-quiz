@@ -6,15 +6,12 @@
   "scripts": {
     "install-mongo": "docker pull mongo && docker create --name bwq-mongo -p 127.0.0.1:27017:27017 mongo",
     "serve": "gulp serve",
-    "heroku-postbuild": "NODE_ENV=production gulp build",
+    "build": "NODE_ENV=production gulp build",
     "deploy": "git fetch live && git checkout -B live live/master && git merge -m 'Merging master' master && git push live live:master && git checkout master && npm run get-secrets",
     "get-secrets": "git fetch live && rm -f $(git ls-tree -r --name-only live/secrets) && git cherry-pick live/secrets --no-commit && git reset"
   },
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": "7.9.0"
-  },
   "dependencies": {
     "array-includes": "^3.0.2",
     "babel-plugin-external-helpers": "^6.8.0",
@@ -33,7 +30,7 @@
     "express-session": "^1.14.1",
     "fastclick": "^1.0.6",
     "google-auth-library": "^0.10.0",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0.2",
     "gulp-babel": "^6.1.2",
     "gulp-debug": "^2.1.2",
     "gulp-define-module": "^0.1.4",
@@ -64,5 +61,8 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "whatwg-fetch": "^1.0.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.12.0"
   }
 }
